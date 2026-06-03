@@ -1,0 +1,82 @@
+ 			     EE 109 - Spring 2026
+                          Lab 2 - Scopes and Signals
+
+Edit the document below to fill your answers from the exercises done in lab.
+Be sure to include the proper units, such as "1 kHz", or "200 msec"
+
+Note: Don't use special characters like Greek "mu" or "Omega" symbols in your
+answers.  These don't display correctly on Vocareum and can make it hard to
+grade the answers.  For example, if you need to specify units of microseconds,
+just type "microseconds" or "usecs".
+
+
+1. (5 points) Fill out the following table for outputs A0 and A1. The duty
+cycle of a signal is the ratio (expressed as a percentage) of the time the
+signal is in the high state to the period of the signal.
+
+    Bit  Time in 1 state   Time in 0 state    Period    Frequency    Duty cycle
+
+    A0        2.4 ms           10 us          2.41 ms      415 Hz        0.996
+
+    A1        10 us            40 us           50 us       20 kHz         0.2
+
+
+
+2. (3 points) What is the range of the width of the A2 pulse that you observed?
+
+    Narrowest:     334 us
+
+    Widest:        2.48 ms
+
+
+3. (2 points) What is the approximate time delay from the input to the output
+of the NOT gate?
+
+10.2 ns
+
+
+4. (3 points) What are the input threshold voltages that caused the output to
+change 1 to 0 and from 0 to 1?
+
+0 to 1: 1.5 v
+1 to 0: 0.5 v
+
+
+                          ---- Review Questions ----
+
+1. (3 points) Suppose you wanted to measure the frequency of a note played by
+a piano and sensed from a microphone connected/viewed on an oscilloscope.
+Answer the following True/False questions with a brief explanation.
+
+     a. True/False: To measure the frequency, the vertical scale of the
+     oscilloscope would be of more use than the horizontal scale.
+     
+     False. Frequency is determined from the period, which is measured along the horizontal axis.
+
+     b. True/False: Since the note is played for a short time period, we
+     should set the triggering to "Single" rather than "Run".
+
+     True. Since the piano note is played briefly, single trigger can capture one stable waveform when the signal occurs.
+
+     c. True/False: If the signal ranges between 0V and 2.5V, the trigger
+     level should ideally be set around 1.25V.
+ 
+     True. This provides a stable trigger and avoids false or missed triggers due to noise at the extremes.
+
+2. (2 points) Each scope probe has a short black ground wire attached to it.
+Why is it necessary to connect this to the circuit's ground point in order to
+make a measurement?
+
+The oscilloscope measures voltage relative to ground. Connecting the probe's ground wire creates a common reference point which complete the measurement path. 
+
+
+
+
+3. (2 points) If you have used the Horizontal Position control to move the
+trigger point horizontally so much that you can no longer see the trigger point
+on the screen, what is the quick way to restore the trigger point back to the
+middle of the screen?
+
+Use the default function for the horizontal position control.
+
+

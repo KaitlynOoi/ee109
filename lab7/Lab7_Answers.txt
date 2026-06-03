@@ -1,0 +1,60 @@
+			     EE 109 - Spring 2026
+			Lab 7 - Pulse Width Modulation
+
+Edit the document below to fill in your answers to the review problems at the
+end of the assignment web page.
+
+
+1. (3 points) Review the conceptual operation of an ADC and use the given
+parameters to find the desired value.
+
+  a. Your 8-bit ADC has Hi and Lo reference voltages of 1V and 4V, what digital
+  number would result from sampling a 2.0V?
+  Range =4-1=3v
+  3v/256=0.0117v
+  2-1v=1v (distance to lo ref)
+  Digital value=1v/0.0117=85
+
+
+  b. Your 5-bit ADC has Hi and Lo reference voltages of 0V and 5V, what input
+  voltage would yield a digital number of 12?
+  Step size=5v/32=0.156v
+  voltage=12*0.156= 1.872v
+
+
+  c.  Your 6-bit ADC has a Lo reference voltages of 2V. A voltage is sampled at
+  2.4V and the digital result is 26. What was the Hi reference voltage used by
+  the ADC?
+  2.4-2=0.4v
+  Step size=0.4/26=0.0154v
+  range=64*0.0154=0.986v
+  High ref=2v+0.986v=3v
+
+
+
+1. (2 point) Tammy Trojan has determined that the servo motor can be controlled
+by TIMER2 even though the PWM period is 16.4ms rather than the preferred 20ms.
+Billy Bruin also wants to control a similar servo motor but feels it must use a
+PWM signal with a 20ms period so he will have to use the 16-bit TIMER1 to
+produce the signal.  Note: When TIMER1 is used for PWM, the OCR1A register
+determines the pulse period, and OCR1B register determines the pulse width.
+What values will Billy have to use for the TIMER1 prescalar, the OCR1A value to
+give a 20ms pulse period, and the values for OCR1B to give the minimum pulse
+width of 0.75ms and the maxumum pulse width of 2.25ms?
+
+Time frequency=16M hz/64= 250000 Hz
+
+OCR1A: 20ms counts=0.02*250000=5000
+
+OCR1B: 
+0.00075 *250000 =188 min
+0,00225 *250000 =563 max
+
+
+
+
+
+
+
+
+

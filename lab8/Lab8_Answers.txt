@@ -1,0 +1,24 @@
+			     EE 109 - Spring 2026
+		     Lab 8 - Hardware Datapath Components
+
+Edit the document below to fill in your answers to the review problems at the
+end of the assignment web page.
+
+
+1. (2 points) We would like to add a feature where if the Select button is
+pressed on the LCD, it turns the LED off completely, and then turns it back on
+when Select is pressed again.  Explain how this could be done without having to
+make any changes to the wiring of the circuit .
+
+Use software state control. Keep a flag such as ledEnabled. When the Select button is pressed, toggle that flag. If the flag says “off,” disable the LED in code by forcing the output low. When Select is pressed again, restore the normal PWM output. 
+
+
+2. (1 point) When TIMER2 is counting, the count value is kept in the TCNT2
+register and is constantly being compared for equality (and only equality) to
+the values in the OCR2A register to determine when to terminate the PWM
+pulse. Suppose at some point your program adjusts the PWM width by changing the
+OCR2A register, and the new OCR2A value is lower than the value that is
+currently in the TCNT2 register. What will happen to the output signal during
+this pulse period?
+
+If OCR2A is changed to a value lower than the current TCNT2, the compare match for that cycle has already been passed, so no match will happen until the timer wraps around and counts back up to the new OCR2A value. 

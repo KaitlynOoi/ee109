@@ -1,0 +1,52 @@
+			     EE 109 - Spring 2026
+			 Lab 4 - Using the LCD Display
+
+Edit the document below to fill in your answers to the review problems at the
+end of the assignment web page.
+
+
+
+1. (2 points) Normally we only read the bits in the PIN register, but a close
+reading of the ATmega328P datasheet reveals that writing a 1 to PIN register
+bit has the effect of inverting the bit in the corresponding PORT register.
+For example, if you write a 1 to PINC, bit 3, it will invert bit 3 in the PORTC
+register.  Based on this information, Billy Bruin has decided that he now knows
+an easy way to "toggle" the E bit (flipping it to its opposite value) to
+generate the E pulse in the lcd_writenibble() function by using this code.
+
+    PINB |= (1 << PB1)     // Toggle E bit from 0 to 1
+    PORTB |= (1 << PB1);   // Delay to make the E pulse longer
+    PINB |= (1 << PB1)     // Toggle E bit from 1 to 0
+
+Note: PINB |= (1 << PB1); is equivalent to PINB = PINB | (1 << PB1);
+
+Tammy Trojan has also read the datasheeet and found that when reading the PIN
+register, if a bit in the group is configured as input, the the voltage coming
+in the PIN is returned, but if a bit is configured as output, the corresponding
+PORT bit value is returned.  From this she concludes that it is possible that
+Billy's method can cause problems depending on how the compiler converts the
+program to instructions the processor executes and therefore should not be
+used.  For the program to work reliably, she recommends using this code to
+generate the E pulse.
+
+    PINB = (1 << PB1)      // Toggle E bit from 0 to 1
+    PORTB |= (1 << PB1);   // Delay to make the E pulse longer
+    PINB = (1 << PB1)      // Toggle E bit from 1 to 0
+
+Tammy says that in this lab assignment with the PAUSE button on PB3, Billy
+Bruin's code can cause the PAUSE button to stop working.  Can you explain why
+this could happen?
+
+In Billy's method, the processor reads all the bit in PINB including PB3 which is the pause button and then writes back to PINB. If the Pause button is pressed, PB3 reads as a 1, and when the value is written back to PINB it will toggle the corresponding PORTB bit. Since 1 at PIN bit matches the PORT bit, this can toggle PORTB bit 3 and affect the pull up resistor on the Pause button. While Tammy writes directly to PINB without reading it first so only PB1 is toggled and no other bits are affected.
+
+
+
+
+2. (1 point) Suppose we need to perform 3 concurrent tasks intermittently: Task
+A every 20 ms, Task B every 15 ms, and Task C every 40 ms. What delay should be
+used on each iteration of the main loop?
+ 
+ The main loop delay should be the largest common divisor which is 5ms. This allows task a to run 4 iterations, b to run every 3 iterations and c to run every 8 iterations.
+
+
+

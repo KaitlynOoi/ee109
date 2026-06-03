@@ -1,0 +1,53 @@
+			     EE 109 - Spring 2026
+			   Lab 5 - Digital Stopwatch
+
+Edit the document below to fill in your answers to the review problems at the
+end of the assignment web page.
+
+1. (2 points) Review the conceptual operation of a timer interrupt.
+
+  a. For a 16-bit timer with clock frequency of 16MHz (like the Arduino) and
+  prescalar of 64, how much time corresponds to a timer value of 2000?
+
+  64/(16*10^6)= 4us timer value: 2000*4=8000us
+
+
+
+
+  b. With a clock frequency of 16MHz and prescalar of 8, what is the longest
+  amount of time we can track with an 8-bit hardware timer.
+  16 MHz /8=2MHz
+  Tick period: 1/2 MHz=0.5us
+  8 bit-> 256 ticks =256*0.5us= 128 us
+  
+
+
+2. (2 points) The Timer modules we have used also have the ability to make an
+output pin turn ON (set), OFF (clear), or Toggle when the timer reaches the
+OCR1A or OCR1B values (i.e. the hardware can automatically control the output
+value of a pin). By searching the data sheet (ATmega328P datasheet is linked on
+our website from the Tools and Links page) answer the following question:
+
+   a.  TIMER1 (the 16-bit timer) can control the pins that are associated with
+   OC1A and OC1B signals. Find to what pins these signals are wired by looking
+   at Figure 1.1 ("28 PDIP" package diagram) on page 12 of the data sheet, or
+   alternatively, Tables 14-3, 14-6, or 14-9.
+
+   OC1A -> PB1 (Arduino Uno D9)
+   OC1B -> PB2 (Arduino Uno D10)
+   
+
+   b.  In this lab we use TIMER1 in the "Clear Timer on Compare" or CTC
+   mode. In this mode when the counter reaches the value in OCR1A register it
+   generates an interrupt and starts counting again from zero. Using the
+   information in section 16.11.1 and table 16-1, describe what the OC1A and
+   OC1B pins would do when the timer reaches the OCR1A value if during
+   initialization we used the statement TCCR1A = 0x60;
+
+   0x60= 0110 0000
+   COM1A1:COM1A0=01
+   COM1B1:COM1B0=10
+   COM1A=01 Toggle OCR1A when timer reaches OCR1A
+   COM1B=10 Clear OCR1B when timer reaches OCR1A
+
+

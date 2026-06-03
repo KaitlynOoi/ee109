@@ -1,0 +1,41 @@
+			     EE 109  - Spring 2026
+		       Lab 3 - Arduino Input and Output
+
+Edit the document below to fill in your answers to the review problems at the
+end of the assignment web page.
+
+1. (2 points) Suppose we relocated the three buttons from group B, bits 5-3 to
+group D, bits 5-3, noting that the LED is still attached to group D, bit
+2. Assuming appropriate DDRD values, consider the following method of turning
+on the LED.
+
+    PORTD = 0x04; // turn on the LED
+
+Explain the problem with this approach and, in particular, what would stop
+working after the execution of that line of code.
+
+"PORTD=0x04" overwrites the entire PORTD register. This turns off the pull ups on PD5-3. The buttons stop working.
+
+
+
+
+2.  (2 points) In Lab 1 we built a simple combinational circuit with a button,
+NOT gate and LED output.  In Lab 2 we measured the propagation delay through
+that circuit from button to LED and found it to be on the order of 10ns.  In
+our circuit this week using software to turn the LED on the delay is much
+longer, on the order of 1-10 microseconds.  That is about two orders of
+magnitude difference. Software takes much longer because our loop is composed
+of many software instructions that the processor must fetch from memory, decode
+and then execute.  You can see that if computation needs to be done quickly,
+hardware has advantages!
+
+In our hardware-only circuit from Lab 2 the gate never changes so the delay
+time from when the button was pressed to the LED lighting up was fairly
+consistent, always about 10ns.  However, with the Arduino the delay times will
+vary every time the button is pressed.  Can you explain why the propagation
+delays vary from one test to another?
+
+Hint: ignore the hardware propagation delays which are very small (tens of ns),
+and think about how your program executes.
+
+This is because the button press may happen at different points in the program's execution. The CPU only responds when it reaches the code that checks the button. If the press occurs just after that check, it will not be detected until the next loop iteration. This causes different response times on each press.
